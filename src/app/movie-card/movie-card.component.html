@@ -1,0 +1,53 @@
+<!-- ngFor is used to display all returned movies, where each movie is displayed in its own card -->
+<app-navbar></app-navbar>
+<div class="movie-view">
+    <mat-card *ngFor="let movie of movies;" class="movie-card"> 
+        <mat-card-header>
+            <mat-card-title>{{ movie.Title }}</mat-card-title>
+            <!-- <mat-card-subtitle>Directed by: {{movie.Director}}</mat-card-subtitle> -->
+        </mat-card-header>
+        <img src={{movie.imageURL}} alt="{{ movie.Title }}"/>
+        
+        <mat-card-actions>
+            <button mat-button 
+            (click)="openGenre(movie.Genres.name, movie.Genres.description)"
+            color="basic">
+                Genre
+            </button>
+            <button 
+            mat-button
+             color="basic"
+            (click)="openDirector(
+           movie.Directors.name,
+           movie.Directors.bio,
+           movie.Directors.birth_year,
+           movie.Directors.death_year
+            )">
+                Director
+            </button>
+            <button 
+            mat-button
+            color="basic"
+            (click)="openSynopsis(movie.Title, movie.Description)">
+                Synopsis
+            </button>
+            <button 
+            mat-button
+            class="mat-icon-button"
+            *ngIf="!isFavoriteMovie(movie._id)"
+            (click)="addToFavorites(movie._id)"    
+            color="primary">
+            <mat-icon>favorite_border</mat-icon>
+            </button>
+            <button 
+            mat-button
+            class="mat-flat-button"
+            *ngIf="!isFavoriteMovie(movie._id)"
+            (click)="addToFavorites(movie._id)"
+            color="accent">
+                <mat-icon>favorite</mat-icon>
+            </button>
+            
+        </mat-card-actions>
+    </mat-card>
+</div>
