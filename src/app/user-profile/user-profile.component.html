@@ -1,0 +1,62 @@
+    <app-navbar></app-navbar>
+    <div class="profile-container">
+        <div class="info-container ">
+            <div class="info">
+                <h1>Profile</h1>
+                <p>Username: {{ user.username }} </p>
+                <p>Email: {{ user.email }} </p>
+    
+                <h2>Favorite Movies</h2>
+                <div *ngIf="favorite_movies.length === 0">
+                    <p>No favorites.</p>
+                </div>
+            </div>
+            <mat-list>
+                 <mat-list-item *ngFor="let movie of favorite_movies" >
+                    <img matListItemAvatar src="{{movie.imageURL}}" />
+                    <span matListItemTitle>{{movie.Title}}</span>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    
+        <!-- <mat-card>
+            <mat-card-content>     -->
+            <form>
+            <h1>Update Profile</h1>
+            <br>
+                    <mat-form-field class="item-b">
+                        <mat-label> Username </mat-label>
+                        <input matInput [(ngModel)]="userData.username" type="text" name="username">
+                    </mat-form-field>
+            
+                    <mat-form-field class="item-c">
+                        <mat-label>Password</mat-label>
+                        <input matInput [(ngModel)]="userData.password" type="password" name="password"
+                            required>
+                    </mat-form-field>
+            
+                    <mat-form-field class="item-d">
+                        <mat-label>Email</mat-label>
+                        <input matInput [(ngModel)]="userData.email" type="email" name="email">
+                    </mat-form-field>
+            
+                    <mat-form-field class="item-e">
+                        <mat-label>Birthday</mat-label>
+                        <input matInput [(ngModel)]="userData.birth_date" type="date" name="birth_date">
+                    </mat-form-field>
+            <br>
+            <mat-card-actions>
+                <button class="item-f" mat-raised-button color="primary" (click)="updateUser()">
+                    Update
+                </button>
+                <button class="item-g" mat-button color="warn" (click)="deleteUser()">
+                    Delete Account
+                </button>
+            </mat-card-actions>
+        </form>
+    <!-- </mat-card-content>
+    </mat-card> -->
+    
+    </div>
+
+
