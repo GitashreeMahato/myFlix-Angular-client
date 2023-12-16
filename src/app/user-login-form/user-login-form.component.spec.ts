@@ -7,8 +7,8 @@ describe('UserLoginFormComponent', () => {
   let fixture: ComponentFixture<UserLoginFormComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [UserLoginFormComponent]
+     await TestBed.configureTestingModule({
+      declarations: [UserLoginFormComponent]
     })
     .compileComponents();
     
