@@ -1,18 +1,21 @@
 .toolbar{
-    color: black;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+    color: rgb(255, 252, 252);
      font-size: medium;
-     background-color: white;
+     background-color: rgb(5, 4, 4);
+     box-shadow: 1px 3px 10px #3c362a;
    }
  
    .logo{
-       color: black;
      font-size: 26px;
      font-weight: bold;
      font-kerning: auto;
    }
  
-   .example-icon {
-     padding: 0 14px;
+   mat-icon{
+    color: white;
    }
    .spacer {
      flex: 1 1 auto;
