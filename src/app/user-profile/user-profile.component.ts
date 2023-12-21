@@ -36,7 +36,7 @@ export class UserProfileComponent implements OnInit{
       this.user = response;
       this.userData.username = this.user.username;
       this.userData.email = this.user.email;
-      // this.user.birth_date = formatDate(this.user.birth_date, 'mm-dd-yyyy', 'en-US', 'UTC+0');
+      this.user.birth_date = formatDate(this.user.birth_date, 'mm-dd-yyyy', 'en-US', 'UTC+0');
       
       this.fetchApiData.getAllMovies().subscribe((response: any) => {
         this.favorite_movies = response.filter((m: { _id: any }) => this.user.favorite_movies.indexOf(m._id) >= 0);
@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit{
   updateUser() : void{
     this.fetchApiData.editUser(this.userData).subscribe((data) => {
       localStorage.setItem('user', JSON.stringify(data));
-      localStorage.setItem('username', data.username);
+      localStorage.setItem('user', data.username);
       console.log(data);
       this.snackBar.open('Your profile has been updated', 'OK',{
         duration: 3000
@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit{
             duration: 3000
           });
         })
-        this.fetchApiData.deleteUser().subscribe((result) => {
+        this.fetchApiData.deleteOneUser().subscribe((result) => {
           console.log(result);
         });
       }
