@@ -5,7 +5,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 import { MovieInfoComponent } from '../movie-info/movie-info.component';
+import { ActorComponent } from '../actor/actor.component';
 
+interface IGenre{
+  name: string,
+  description: string
+}
+interface IActor{
+  name: string,
+  description: string
+}
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -92,47 +101,66 @@ addToFavorites(id: string): void {
   /** 
    * Removes a movie from a user's favorites
    * */
-  removeFavoriteMovie(id: string): void {
-  console.log(id);
-  this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {
-    this.snackBar.open('Movie removed from favorites', 'OK', {
-      duration: 2000,
-    });
-
-    const username = localStorage.getItem('username');
-    if (username !== null) {
-      // Fetch the updated favorite movies data
-      this.fetchApiData.getfavoriteMovies().subscribe((favorites: any) => {
-        this.favorites = favorites;
-      });
-    }
-  });
-}
-
-
-// removeFavoriteMovie(id: string): void {
+//   removeFavoriteMovie(id: string): void {
+//   console.log(id);
 //   this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {
-//     this.snackBar.open('removed from favorites', 'OK', {
-//       duration: 2000
-//     })
+//     this.snackBar.open('Movie removed from favorites', 'OK', {
+//       duration: 2000,
+//     });
+
+//     const username = localStorage.getItem('username');
+//     if (username !== null) {
+//       // Fetch the updated favorite movies data
+//       this.fetchApiData.getfavoriteMovies(username).subscribe((favorites: any) => {
+//         this.favorites = favorites;
+//       });
+//     }
 //   });
 // }
+
+removeFavoriteMovie(id: string): void {
+  this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {
+    this.snackBar.open('removed from favorites', 'OK', {
+      duration: 2000
+    })
+  });
+}
 
  /** 
    *  Open genre information from GenreComponent 
    * @param genre name
    * @paramgenre description
    * */
- openGenre(name: string, description: string): void {
+ openGenre(genres: IGenre[]): void {
   this.dialog.open(GenreComponent, {
     data: {
-      name: name,
-      description: description,
+      name: 'Genres',
+      description: genres.map(genre => genre.name).join(', '),
+    },
+    width: '400px',
+  });
+
+
+// openDirector(Directors: any): void{
+//   this.dialog.open(MovieInfoComponent, {
+//     data: {
+//       Title: Directors.name,
+//       Decription: Directors.bio
+//     }
+//   })
+// }
+
+}
+
+openActor(actors: IActor[]): void {
+  this.dialog.open(ActorComponent, {
+    data: {
+      name: 'Actors',
+      description: actors.map(actor => actor.name).join(', '),
     },
     width: '400px',
   });
 }
-
 /** 
  * Open director information from DirectorComponent
  * @param director name
@@ -140,7 +168,7 @@ addToFavorites(id: string): void {
  * @param director birth_year
  * @param director death_year
  * */
-openDirector(name: string, bio: string, birth_year: Date, death_year: Date): void {
+openDirector(name: string, bio: string, birth_year: string, death_year: string): void {
   this.dialog.open(DirectorComponent, {
     data: {
       name: name,
@@ -151,15 +179,6 @@ openDirector(name: string, bio: string, birth_year: Date, death_year: Date): voi
     width: '400px',
   });
 }
-
-// openDirector(Directors: any): void{
-//   this.dialog.open(MovieInfoComponent, {
-//     data: {
-//       Title: Directors.name,
-//       Decription: Directors.bio
-//     }
-//   })
-// }
 
 /** Open movie description from MovieInfoComponent
  * @param movie title
@@ -174,4 +193,5 @@ openSynopsis(Title: String, Description: string): void {
     width: '400px',
   });
 }
+
 }
