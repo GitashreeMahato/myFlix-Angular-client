@@ -31,6 +31,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { GenreComponent } from './genre/genre.component';
 import { DirectorComponent } from './director/director.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
+import { ActorComponent } from './actor/actor.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent  },
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
     MovieInfoComponent,
     GenreComponent,
     DirectorComponent,
+    ActorComponent
   ],
   imports: [
     BrowserModule,
