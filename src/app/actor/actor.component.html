@@ -1,0 +1,13 @@
+<mat-card class="actor-dialog">
+    <button class="actor-close-button" mat-stroked-button aria-label="Close the actor details button" mat-dialog-close
+      color="primary">
+      X
+    </button>
+    <mat-card-title>
+      <h3 class="actor-dialog-title">{{ data.name }}</h3>
+    </mat-card-title>
+    <br />
+    <mat-dialog-content class="actor-dialog-content">
+      {{ data.description }}
+    </mat-dialog-content>
+  </mat-card>
