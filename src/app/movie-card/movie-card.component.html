@@ -1,0 +1,63 @@
+<div class="movie-page">
+    <app-navbar></app-navbar>
+<div class="movie-view">
+    <mat-card *ngFor="let movie of movies;" class="movie-card"> 
+        <mat-toolbar-row>
+            <span>{{ movie.Title }}</span>
+            <span class="spacer"></span> 
+              <button 
+            mat-icon-button
+            aria-label="Example icon-button with heart icon"
+            [ngClass]="isFavoriteMovie(movie._id) ? 'mat-flat-button' : 'mat-icon-button'"
+            (click)="isFavoriteMovie(movie._id) ? removeFavoriteMovie(movie._id) : addToFavorites(movie._id)"
+            [color]="isFavoriteMovie(movie._id) ? 'accent' : 'warn'">
+            <mat-icon>{{ isFavoriteMovie(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>         
+        </mat-toolbar-row>
+        <img src={{movie.imageURL}} alt="{{ movie.Title }}"/>
+        
+        <mat-card-actions>
+            <button mat-button 
+            (click)="openGenre(movie.Genres)"
+            aria-label="View Genres"
+            color="basic">
+                Genre
+            </button>
+            <button 
+            mat-button
+             color="basic"
+             (click)="openDirector(
+             movie.Directors[0].name, 
+             movie.Directors[0].bio, 
+             movie.Directors[0].birth_year,
+             movie.Directors[0].death_year)"
+             >
+                Director
+            </button>
+            <button 
+            mat-button
+             color="basic"
+             (click)="openActor(
+             movie.Actors)"
+             aria-label="View Actors"
+             >
+                Actor
+            </button>
+            <button 
+            mat-button
+            color="basic"
+            (click)="openSynopsis(movie.Title, movie.Description)">
+                Synopsis
+            </button>
+            <!-- <button 
+            mat-button
+            [ngClass]="isFavoriteMovie(movie._id) ? 'mat-flat-button' : 'mat-icon-button'"
+            (click)="isFavoriteMovie(movie._id) ? removeFavoriteMovie(movie._id) : addToFavorites(movie._id)"
+            [color]="isFavoriteMovie(movie._id) ? 'accent' : 'primary'">
+            <mat-icon class="fav-btn">{{ isFavoriteMovie(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            </button>  --> 
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+</div>
