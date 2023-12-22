@@ -6,8 +6,8 @@ describe('UserRegistrationFormComponent', () => {
   let component: UserRegistrationFormComponent;
   let fixture: ComponentFixture<UserRegistrationFormComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach( () => {
+     TestBed.configureTestingModule({
       declarations: [UserRegistrationFormComponent]
     })
     .compileComponents();

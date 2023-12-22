@@ -1,0 +1,88 @@
+.profile-page{
+    
+    background-image: linear-gradient(180deg, rgb(233, 153, 177), rgb(206, 236, 232));
+    height: 100vh;
+}
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+.user.pwd {
+    grid-area: line1;
+
+}
+
+.mail .bdy {
+    grid-area: line2;
+}
+
+
+.update-btn .delete-btn {
+    grid-area: line3;
+    
+}
+
+.mat-mdc-list-item-title {
+    color: white !important;
+}
+
+.mat-warn {
+    background-color: #800020;
+}
+
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "line1"
+        "line2"
+        "line3";
+        gap:20px;
+        height: fit-content;
+  }
+
+.mat-list-item{
+    color: white !important;
+}
+
+.action-btn{
+    display: flex;
+    flex-direction: row;
+    // justify-content: left;
+}
+.spacer{
+    flex: 1 1 auto;
+}
+.update-btn{
+    background-color: #1350a6!important;
+    color: aliceblue!important;
+    margin-top: 5%;
+    // float: left;
+}
+
+@media screen and (max-width: 550px) {
+    .profile-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-left: 10px;
+
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "line1"
+            "line2"
+            "line3 "
+        ;
+        height: fit-content;
+    }
+}
