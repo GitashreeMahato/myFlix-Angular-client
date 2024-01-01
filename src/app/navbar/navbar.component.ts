@@ -13,14 +13,25 @@ export class NavbarComponent {
     public router : Router,
   ) {}
   
+  /**
+   * This is navigation bar link and is responsible for navigating movies
+   */
   toMovies(): void {
     this.router.navigate(['movies']);
   }
+  /**
+   * This is navigation bar link and is responsible for navigating profile
+   */
   toProfile(): void {
     this.router.navigate(['profile']);
   }
+  /**
+ * This is the function responsible for logging out the user
+ * @returns user and token removed from local storage
+ * @returns user navigated to welcome page
+ */
     logoutUser(): void{
-      localStorage.removeItem('username');
+      localStorage.removeItem('user');
       localStorage.removeItem('token');
       this.router.navigate(['welcome']);
     }

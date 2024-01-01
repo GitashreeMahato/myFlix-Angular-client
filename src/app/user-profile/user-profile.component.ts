@@ -3,7 +3,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-profile',
@@ -24,12 +24,16 @@ export class UserProfileComponent implements OnInit{
     public dialog : MatDialog,
   ) {}
   ngOnInit(): void {
-      this.getUser()
-  }
+    this.getUser();
+     
+      }
+      
   /**
  * Username and token will be taken from localstorage to send a request to the api for the users information
  * User profile page will then be able to display the users favorite movies list and their username, name, email, etc.
- */
+   * @returns user's data
+   */
+ 
   // Gets the users info to display or change
   getUser(): void {
     this.fetchApiData.getOneUser().subscribe((response: any) => {
@@ -44,6 +48,13 @@ export class UserProfileComponent implements OnInit{
     })
   }
 
+  /**
+ * This method will update the user's data
+ * @returns user's data
+ * @returns updated user's data saved to local storage
+ * @returns user notified of success
+ * @returns user notified of error
+ */
   // logic for edit user profile
   updateUser() : void{
     this.fetchApiData.editUser(this.userData).subscribe((data) => {
@@ -63,6 +74,15 @@ export class UserProfileComponent implements OnInit{
 
   // calls the deleteUser API and removes the user in the database
 
+  /**
+ * This method will delete the user's account
+ * @returns confirmation prompt
+ * @returns user's account deleted
+ * @returns user navigated to welcome page
+ * @returns user notified of success
+ * @returns user notified of error
+ * @returns user token and user details removed from local storage
+ */
   deleteUser(): void {
       if(confirm('Do you want to delete your account permanently?')) {
         this.router.navigate(['welcome']).then(() => {
@@ -76,12 +96,85 @@ export class UserProfileComponent implements OnInit{
         });
       }
     }
-    // removeFavMovie(movieId: string): void {
-    //   this.fetchApiData.deleteFavoriteMovie(movieId).subscribe(() => {
-    //     this.snackBar.open('Movie removed from Favorites.', 'OK', {
-    //       duration: 2000
-    //     })
-    //   });
-    // }
+   
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

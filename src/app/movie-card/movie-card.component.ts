@@ -7,6 +7,7 @@ import { DirectorComponent } from '../director/director.component';
 import { MovieInfoComponent } from '../movie-info/movie-info.component';
 import { ActorComponent } from '../actor/actor.component';
 
+
 interface IGenre{
   name: string,
   description: string
@@ -15,14 +16,21 @@ interface IActor{
   name: string,
   description: string
 }
+/**
+ * @description Component representing the movie card.
+ * @selector: 'app-movie-card'
+ * @templateUrl: './movie-card.component.html'
+ * @styleUrls: ['./movie-card.component.scss']
+ */
+
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss']
 })
 export class MovieCardComponent implements OnInit {
-  // declare as an movie array that keeps movies while returns from API call
-  movies: any[] = [];
+    /** The movie data displayed in the card. */
+    movies: any[] = [];
   favorites: any[] = [];
 
   constructor(
@@ -35,6 +43,12 @@ export class MovieCardComponent implements OnInit {
       this.getMovies();
       this.getFavorites();
   }
+
+  /**
+ * This will get all movies from the API
+ * @returns movies
+ */
+
 // this function helps to fetch movies from FetchApiDataService with the help of getAllMovies()
   getMovies(): void{
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -46,6 +60,7 @@ export class MovieCardComponent implements OnInit {
 
    /** 
    * Get user info and set favorites
+   * @returns favorite movies selected by user
    * */
  getFavorites(): void {
   this.fetchApiData.getOneUser().subscribe(
@@ -65,6 +80,8 @@ export class MovieCardComponent implements OnInit {
 
    /**
     * Check if a movie is a user's favorite already
+    * @param movieId
+    * @returns boolean
     * */
   isFavoriteMovie(movieId: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -74,6 +91,8 @@ export class MovieCardComponent implements OnInit {
   /**
    * Add a movie to a user's favorites 
    * Or remove on click if it is already a favorite
+   * @param id 
+   * @returns success message
    * */
 addToFavorites(id: string): void {
   if (this.isFavoriteMovie(id)) {
@@ -90,33 +109,11 @@ addToFavorites(id: string): void {
   }
 }
 
-// addToFavorites(id: string): void {
-//   this.fetchApiData.addfavoriteMovies(id).subscribe(() => {
-//     this.snackBar.open('Movie added to favorites!', 'OK', {
-//       duration: 2000
-//     })
-//   });
-// }
-
-  /** 
-   * Removes a movie from a user's favorites
-   * */
-//   removeFavoriteMovie(id: string): void {
-//   console.log(id);
-//   this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {
-//     this.snackBar.open('Movie removed from favorites', 'OK', {
-//       duration: 2000,
-//     });
-
-//     const username = localStorage.getItem('username');
-//     if (username !== null) {
-//       // Fetch the updated favorite movies data
-//       this.fetchApiData.getfavoriteMovies(username).subscribe((favorites: any) => {
-//         this.favorites = favorites;
-//       });
-//     }
-//   });
-// }
+/**
+ * This will remove movie from user's favorite list
+ * @param id 
+ * @returns suceess message
+ */
 
 removeFavoriteMovie(id: string): void {
   this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {
@@ -128,8 +125,8 @@ removeFavoriteMovie(id: string): void {
 
  /** 
    *  Open genre information from GenreComponent 
-   * @param genre name
-   * @paramgenre description
+   * @param genre 
+   * @returns genres name
    * */
  openGenre(genres: IGenre[]): void {
   this.dialog.open(GenreComponent, {
@@ -139,19 +136,13 @@ removeFavoriteMovie(id: string): void {
     },
     width: '400px',
   });
-
-
-// openDirector(Directors: any): void{
-//   this.dialog.open(MovieInfoComponent, {
-//     data: {
-//       Title: Directors.name,
-//       Decription: Directors.bio
-//     }
-//   })
-// }
-
 }
 
+/** 
+   *  Open actor information from ActorComponent 
+   * @param actors 
+   * @returns actors name
+   * */
 openActor(actors: IActor[]): void {
   this.dialog.open(ActorComponent, {
     data: {
@@ -167,6 +158,7 @@ openActor(actors: IActor[]): void {
  * @param director bio
  * @param director birth_year
  * @param director death_year
+ * @returns director name, bio, birth_year, death_year
  * */
 openDirector(name: string, bio: string, birth_year: string, death_year: string): void {
   this.dialog.open(DirectorComponent, {
@@ -183,6 +175,7 @@ openDirector(name: string, bio: string, birth_year: string, death_year: string):
 /** Open movie description from MovieInfoComponent
  * @param movie title
  * @param movie description aka Synopsis
+ * @returns movie Title, Description
  * */
 openSynopsis(Title: String, Description: string): void {
   this.dialog.open(MovieInfoComponent, {
@@ -195,3 +188,54 @@ openSynopsis(Title: String, Description: string): void {
 }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

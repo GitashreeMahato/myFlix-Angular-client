@@ -27,6 +27,15 @@ export class UserRegistrationFormComponent implements OnInit{
         
     }
 
+    /**
+  * This function registers a new user
+  * @returns user registered
+  * @returns user logged in
+  * @returns user navigated to movies view
+  * @returns user token and user details saved to local storage
+  * @returns user notified of success
+  * @returns user notified of error 
+  */
   // This is the function responsible for sending the form inputs to the backend
     registerUser(): void{
     this.fetchApiData.userRegistration(this.userData).subscribe((response) => {    

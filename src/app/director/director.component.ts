@@ -7,6 +7,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./director.component.scss']
 })
 export class DirectorComponent implements OnInit{
+  /**
+   * This is the constructor for the component
+   * @param data 
+   * @returns director name, bio, birth_year, and death_year
+   */
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
