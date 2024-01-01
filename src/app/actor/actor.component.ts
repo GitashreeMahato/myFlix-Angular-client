@@ -7,6 +7,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./actor.component.scss']
 })
 export class ActorComponent implements OnInit{
+  /**
+   * This is the constructor for the component
+   * @param data 
+   * @returns Title and Description aka actors name
+   */
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
