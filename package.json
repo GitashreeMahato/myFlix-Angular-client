@@ -9,8 +9,7 @@
     "test": "ng test",
     "deploy": "ng deploy --base-href=/myFlix-Angular-client/",
     "serve:ssr:myFlix-Angular-client": "node dist/my-flix-angular-client/server/server.mjs",
-    "docs": "typedoc"
-
+    "docs": "typedoc --entryPointStrategy expand ./src --out docs"
   },
   "private": true,
   "dependencies": {
